@@ -15,6 +15,8 @@ export default defineConfig({
         hello_world : "hello-world.html",
         task : "task.html",
         counter : "counter.html",
+        note : "note.html",
+        snapshot : "snapshot.html",
         contact: "contact.html"
       }
     }
