@@ -1,8 +1,7 @@
 import * as React from "react";
-import {useState} from "react";
 
 export interface NoteObject {
-    id?: number | string;
+    id: number
     text: string;
     done: boolean;
 }
@@ -13,8 +12,8 @@ interface NoteComponentProps {
     onDelete: (note: NoteObject) => void;
 }
 
-export default function Note({note, onChange, onDelete} : NoteComponentProps): React.ReactElement {
-    const [isEditing, setIsEditing] = useState(false);
+export default function Note({note, onChange, onDelete}: NoteComponentProps): React.ReactElement {
+    const [isEditing, setIsEditing] = React.useState(false);
 
     let component;
 
@@ -34,7 +33,7 @@ export default function Note({note, onChange, onDelete} : NoteComponentProps): R
         component = (
             <>
                 {note.text}
-                <button onClick={(): void => setIsEditing(true)}>Save</button>
+                <button onClick={(): void => setIsEditing(true)}>Edit</button>
             </>
         )
     }

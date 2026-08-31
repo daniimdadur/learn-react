@@ -5,6 +5,7 @@ interface NoteFormProps {
 }
 
 export default function NoteForm({onAddNote}: NoteFormProps): ReactElement {
+    console.log("render NoteForm");
     const [text, setText] = useState("");
 
     function handleChange(e: ChangeEvent<HTMLInputElement>): void {
@@ -12,8 +13,10 @@ export default function NoteForm({onAddNote}: NoteFormProps): ReactElement {
     }
 
     function handleClick(): void {
+        console.log(text);
         setText("");
         onAddNote(text);
+        console.log(text);
     }
 
     return (

@@ -1,9 +1,7 @@
 import {createRoot} from "react-dom/client";
-import {StrictMode} from "react";
+import NoteApp from "./NoteApp.tsx";
 
 createRoot(document.getElementById("root")!)
     .render(
-       <StrictMode>
-
-       </StrictMode>
+        <NoteApp/>
     )
