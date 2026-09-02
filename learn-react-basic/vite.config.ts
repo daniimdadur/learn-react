@@ -17,6 +17,7 @@ export default defineConfig({
         counter : "counter.html",
         note : "note.html",
         snapshot : "snapshot.html",
+        profile : "profile.html",
         contact: "contact.html"
       }
     }
