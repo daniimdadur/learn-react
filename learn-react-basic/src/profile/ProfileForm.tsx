@@ -2,7 +2,7 @@ import * as React from "react";
 
 interface ProfileFormProps {
     name: string;
-    setName(name: string): void;
+    setName: (name: string) => void;
 }
 
 export default function ProfileForm({name, setName}: ProfileFormProps): React.ReactElement {

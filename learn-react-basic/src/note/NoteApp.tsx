@@ -3,23 +3,19 @@ import NoteForm from "./NoteForm.tsx";
 import NoteList from "./NoteList.tsx";
 import * as React from "react";
 import {useImmerReducer} from "use-immer";
+import {NotesContext, NotesDispatchContext} from "./NoteContext.tsx";
 
-type ActionReducer =
+export type ActionReducer =
     | { type: "ADD_NOTE"; id: number; text: string }
     | { type: "CHANGE_NOTE"; id: number; text: string; done: boolean }
     | { type: "DELETE_NOTE"; id: number };
 
-let id: number = 0;
-function customId(): number {
-    return id++;
-}
-
 const initialNotes: NoteObject[] = [
-    {id: customId(), text: "Learn React", done: false},
-    {id: customId(), text: "Learn TypeScript", done: false},
-    {id: customId(), text: "Learn Redux", done: false},
-    {id: customId(), text: "Learn Docker", done: true},
-    {id: customId(), text: "Learn Next.js", done: false}
+    {id: 1, text: "Learn React", done: false},
+    {id: 2, text: "Learn TypeScript", done: false},
+    {id: 3, text: "Learn Redux", done: false},
+    {id: 4, text: "Learn Docker", done: true},
+    {id: 5, text: "Learn Next.js", done: false}
 ]
 
 function notesReducer(notes: NoteObject[], action: ActionReducer): void {
@@ -43,33 +39,16 @@ export default function NoteApp(): React.ReactElement {
     console.log("render NoteApp");
     const [notes, dispatch] = useImmerReducer(notesReducer, initialNotes);
 
-    function handleAddNote(text: string): void {
-        dispatch({
-            type: "ADD_NOTE",
-            id: customId(),
-            text: text
-        });
-    }
-
-    function handleChangeNote(note: NoteObject): void {
-        dispatch({
-            type: 'CHANGE_NOTE',
-            ...note
-        });
-    }
-
-    function handleDeleteNote(note: NoteObject): void {
-        dispatch({
-            type: "DELETE_NOTE",
-            id: note.id
-        });
-    }
 
     return (
         <div>
-            <h1>Note App</h1>
-            <NoteForm onAddNote={handleAddNote}/>
-            <NoteList notes={notes} onChange={handleChangeNote} onDelete={handleDeleteNote}/>
+            <NotesContext.Provider value={notes}>
+                <NotesDispatchContext value={dispatch}>
+                    <h1>Note App</h1>
+                    <NoteForm/>
+                    <NoteList/>
+                </NotesDispatchContext>
+            </NotesContext.Provider>
         </div>
     )
 }

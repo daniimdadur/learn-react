@@ -1,4 +1,7 @@
 import * as React from "react";
+import {NotesDispatchContext} from "./NoteContext.tsx";
+import type {Dispatch} from "react";
+import type {ActionReducer} from "./NoteApp.tsx";
 
 export interface NoteObject {
     id: number
@@ -8,18 +11,23 @@ export interface NoteObject {
 
 interface NoteComponentProps {
     note: NoteObject;
-    onChange: (note: NoteObject) => void;
-    onDelete: (note: NoteObject) => void;
 }
 
-export default function Note({note, onChange, onDelete}: NoteComponentProps): React.ReactElement {
+export default function Note({note}: NoteComponentProps): React.ReactElement {
+    const dispatch: Dispatch<ActionReducer> | null = React.useContext(NotesDispatchContext);
     const [isEditing, setIsEditing] = React.useState(false);
 
     let component;
 
     function handleChangeText(e: React.ChangeEvent<HTMLInputElement>): void {
-        const newNote = {...note, text: e.target.value};
-        onChange(newNote);
+        if (dispatch) {
+            dispatch({
+                type: 'CHANGE_NOTE',
+                id: note.id,
+                text: e.target.value,
+                done: note.done
+            });
+        }
     }
 
     if (isEditing) {
@@ -39,15 +47,30 @@ export default function Note({note, onChange, onDelete}: NoteComponentProps): Re
     }
 
     function handleChangeDone(e: React.ChangeEvent<HTMLInputElement>): void {
-        const newNote = {...note, done: e.target.checked};
-        onChange(newNote);
+        if (dispatch) {
+            dispatch({
+                type: 'CHANGE_NOTE',
+                id: note.id,
+                text: note.text,
+                done: e.target.checked
+            });
+        }
+    }
+
+    function handleDelete(): void {
+        if (dispatch) {
+            dispatch({
+                type: 'DELETE_NOTE',
+                id: note.id
+            });
+        }
     }
 
     return (
         <label>
             <input type="checkbox" checked={note.done} onChange={handleChangeDone}/>
             {component}
-            <button onClick={(): void => onDelete(note)}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
         </label>
     )
 }

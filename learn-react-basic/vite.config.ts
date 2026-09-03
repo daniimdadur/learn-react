@@ -18,6 +18,7 @@ export default defineConfig({
         note : "note.html",
         snapshot : "snapshot.html",
         profile : "profile.html",
+        timer : "timer.html",
         contact: "contact.html"
       }
     }
