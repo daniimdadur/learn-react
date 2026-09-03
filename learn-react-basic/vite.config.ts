@@ -19,6 +19,7 @@ export default defineConfig({
         snapshot : "snapshot.html",
         profile : "profile.html",
         timer : "timer.html",
+        guest_book : "guest-boot.html",
         contact: "contact.html"
       }
     }
