@@ -1,5 +1,6 @@
 import {type ChangeEvent, type ReactElement, useRef, useState} from "react";
 import GuestBookForm from "./GuestBookForm.tsx";
+import * as React from "react";
 
 export default function GuestBook(): ReactElement {
     const [name, setName] = useState<string>("");
@@ -7,7 +8,7 @@ export default function GuestBook(): ReactElement {
 
     const nameInput = useRef<HTMLInputElement>(null)
 
-    function handleSubmit(e): void {
+    function handleSubmit(e: React.MouseEvent<HTMLButtonElement>): void {
         e.preventDefault();
         setName("");
         setMessage("");

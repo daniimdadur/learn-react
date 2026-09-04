@@ -20,6 +20,7 @@ export default defineConfig({
         profile : "profile.html",
         timer : "timer.html",
         guest_book : "guest-boot.html",
+        product : "product.html",
         contact: "contact.html"
       }
     }
