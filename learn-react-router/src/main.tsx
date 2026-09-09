@@ -7,6 +7,8 @@ import Customer from "./Customer.tsx";
 import Product from "./Product.tsx";
 import Seller from "./Seller.tsx";
 import Data from "./Data.tsx";
+import DataLayout from "./DataLayout.tsx";
+import ProductDetail from "./ProductDetail.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -14,13 +16,14 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
-            <Route path="/data">
+            <Route path="/data" element={<DataLayout/>}>
                 <Route index element={<Data/>}/>
                 <Route path="customers" element={<Customer/>}/>
                 <Route path="products" element={<Product/>}/>
                 <Route path="sellers" element={<Seller/>}/>
+                <Route path="products/:id" element={<ProductDetail/>}/>
             </Route>
         </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
