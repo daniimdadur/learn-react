@@ -9,6 +9,8 @@ import Seller from "./Seller.tsx";
 import Data from "./Data.tsx";
 import DataLayout from "./DataLayout.tsx";
 import ProductDetail from "./ProductDetail.tsx";
+import Image from "./Image.tsx";
+import NotFound from "./NotFound.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
+            <Route path="/images/*" element={<Image/>}/>
             <Route path="/data" element={<DataLayout/>}>
                 <Route index element={<Data/>}/>
                 <Route path="customers" element={<Customer/>}/>
@@ -23,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="sellers" element={<Seller/>}/>
                 <Route path="products/:id" element={<ProductDetail/>}/>
             </Route>
+            <Route path="/*" element={<NotFound/>}/>
         </Routes>
     </BrowserRouter>
   </StrictMode>
