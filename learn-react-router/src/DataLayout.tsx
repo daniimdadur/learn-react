@@ -1,8 +1,10 @@
 import type {ReactElement} from "react";
-import {NavLink, Outlet} from "react-router";
+import {NavLink, Outlet, useLocation} from "react-router";
 import "./Data.css"
 
 export default function DataLayout(): ReactElement {
+    const location = useLocation();
+
     return (
         <>
             <div>
@@ -25,6 +27,7 @@ export default function DataLayout(): ReactElement {
             </div>
             <div>
                 <p>this is footer</p>
+                <p>current location : {location.pathname}{location.search}{location.hash}</p>
             </div>
         </>
     )

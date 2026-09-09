@@ -11,6 +11,7 @@ import DataLayout from "./DataLayout.tsx";
 import ProductDetail from "./ProductDetail.tsx";
 import Image from "./Image.tsx";
 import NotFound from "./NotFound.tsx";
+import ProductSearch from "./ProductSearch.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route index element={<Data/>}/>
                 <Route path="customers" element={<Customer/>}/>
                 <Route path="products" element={<Product/>}/>
+                <Route path="products/search" element={<ProductSearch/>}/>
                 <Route path="sellers" element={<Seller/>}/>
                 <Route path="products/:id" element={<ProductDetail/>}/>
             </Route>
