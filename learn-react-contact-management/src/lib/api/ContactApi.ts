@@ -1,6 +1,5 @@
 const API_PATH = import.meta.env.VITE_API_PATH as string;
 
-// Interface untuk payload Request & Query
 export interface ContactPayload {
     first_name: string;
     last_name?: string;
@@ -19,10 +18,7 @@ export interface ContactQueryParams {
     page?: string | number;
 }
 
-export const contactCreate = async (
-    token: string,
-    { first_name, last_name, email, phone }: ContactPayload
-): Promise<Response> => {
+export const contactCreate = async (token: string, { first_name, last_name, email, phone }: ContactPayload): Promise<Response> => {
     return await fetch(`${API_PATH}/contacts`, {
         method: 'POST',
         headers: {
@@ -39,10 +35,7 @@ export const contactCreate = async (
     });
 };
 
-export const contactList = async (
-    token: string,
-    { name, phone, email, page }: ContactQueryParams = {}
-): Promise<Response> => {
+export const contactList = async (token: string, { name, phone, email, page }: ContactQueryParams = {}): Promise<Response> => {
     const url = new URL(`${API_PATH}/contacts`);
 
     if (name) url.searchParams.append('name', name);
@@ -59,10 +52,7 @@ export const contactList = async (
     });
 };
 
-export const contactDelete = async (
-    token: string,
-    id: string | number
-): Promise<Response> => {
+export const contactDelete = async (token: string, id: string | number): Promise<Response> => {
     return await fetch(`${API_PATH}/contacts/${id}`, {
         method: 'DELETE',
         headers: {
@@ -72,10 +62,7 @@ export const contactDelete = async (
     });
 };
 
-export const contactDetail = async (
-    token: string,
-    id: string | number
-): Promise<Response> => {
+export const contactDetail = async (token: string, id: string | number): Promise<Response> => {
     return await fetch(`${API_PATH}/contacts/${id}`, {
         method: 'GET',
         headers: {
@@ -85,10 +72,7 @@ export const contactDetail = async (
     });
 };
 
-export const contactUpdate = async (
-    token: string,
-    { id, first_name, last_name, email, phone }: ContactUpdatePayload
-): Promise<Response> => {
+export const contactUpdate = async (token: string, { id, first_name, last_name, email, phone }: ContactUpdatePayload): Promise<Response> => {
     return await fetch(`${API_PATH}/contacts/${id}`, {
         method: 'PUT',
         headers: {
