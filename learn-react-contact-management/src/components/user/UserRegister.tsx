@@ -19,9 +19,9 @@ export default function UserRegister(): ReactElement {
         }
 
         const response: Response = await userRegister({
-            username: username,
-            password: password,
-            name: name,
+            username,
+            password,
+            name
         });
         const responseBody = await response.json();
         console.log(responseBody);

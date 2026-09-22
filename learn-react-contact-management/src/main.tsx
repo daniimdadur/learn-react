@@ -5,6 +5,8 @@ import Layout from "./components/Layout.tsx";
 import UserRegister from "./components/user/UserRegister.tsx";
 import UserLogin from "./components/user/UserLogin.tsx";
 import DashboardLayout from "./components/DashboardLayout.tsx";
+import UserProfile from "./components/user/UserProfile.tsx";
+import UserLogout from "./components/user/UserLogout.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,6 +18,8 @@ createRoot(document.getElementById('root')!).render(
               </Route>
               <Route path="/dashboard" element={<DashboardLayout/>}>
                   <Route path="contacts" element={<div>contacts</div>}/>
+                  <Route path="users/profile" element={<UserProfile/>}/>
+                  <Route path="users/logout" element={<UserLogout/>}/>
               </Route>
           </Routes>
       </BrowserRouter>
